@@ -1,0 +1,27 @@
+body {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.flex-row {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.flex-column {
+    width: 20%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.product {
+    width:200px;
+    border: 1px solid gray;
+}

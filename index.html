@@ -11,23 +11,65 @@
 </head>
 <body>
     
-    <div id="container">
+    <div class="flex">
 
-        <p>Carro de compras</p>
-        <div id="cart"> </div>
-        <hr>
-        <div id="products"> </div>
-        
-        
+        <div class="flex-row" id="products">
+            <div class="product">Product AA</div>
+            <div class="product">Product AB</div>
+            <div class="product">Product AC</div>
+            <div class="product">Product AD</div>
+            <div class="product">Product AF</div>
+            <div class="product">Product AA</div>
+            <div class="product">Product AB</div>
+            <div class="product">Product AC</div>
+            <div class="product">Product AD</div>
+            <div class="product">Product AF</div>
+            <div class="product">Product AA</div>
+            <div class="product">Product AB</div>
+            <div class="product">Product AC</div>
+            <div class="product">Product AD</div>
+            <div class="product">Product AF</div>
+        </div>
+
+        <div class="flex-column" id="login-cart">
+
+            <div class="login">
+                <form action="" method="post" id="form-login">
+                    <input type="email" name="email" id="email" placeholder="user">
+                    <input type="password" name="password" id="password" placeholder="pass">
+                    <button type="submit"> Iniciar sesión </button>
+                </form>
+            </div>
+            
+            <div class="cart">
+                <form action="" method="post" id="form-cart">
+                    <button type="submit"> Realizar compra </button>
+                </form>
+            </div>
+            
+            <div>
+
+            </div>
+        </div>
+
     </div>
 
-    <script src="./assets/js/script3.js"></script>
-
     <script>
+        const formLogin = document.getElementById('form-login');
+        const formCart = document.getElementById('form-cart');
 
-        init(10);
+        const submitLogin = (event) => {
+            event.preventDefault();
+        }
+
+        const submitCart = (event) => {
+            event.preventDefault();
+        }
+
+        formLogin.addEventListener('submit', submitLogin);
+        formCart.addEventListener('submit', submitCart);
 
     </script>
-
+  
 </body>
 </html>
