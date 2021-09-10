@@ -14,21 +14,7 @@
     <div class="flex">
 
         <div class="flex-row" id="products">
-            <div class="product">Product AA</div>
-            <div class="product">Product AB</div>
-            <div class="product">Product AC</div>
-            <div class="product">Product AD</div>
-            <div class="product">Product AF</div>
-            <div class="product">Product AA</div>
-            <div class="product">Product AB</div>
-            <div class="product">Product AC</div>
-            <div class="product">Product AD</div>
-            <div class="product">Product AF</div>
-            <div class="product">Product AA</div>
-            <div class="product">Product AB</div>
-            <div class="product">Product AC</div>
-            <div class="product">Product AD</div>
-            <div class="product">Product AF</div>
+            
         </div>
 
         <div class="flex-column" id="login-cart">
@@ -54,12 +40,34 @@
 
     </div>
 
+    <!--
+    <script src="./assets/js/script3.js"></script>
+    -->
     <script>
+
+        class Product {
+            constructor(id, name, price, stock) {
+                this.id = id
+                this.image = 'https://www.mountaingoatsoftware.com/uploads/blog/2016-09-06-what-is-a-product-quote.png'
+                this.name = name;
+                this.price = price;
+                this.stock = stock;    
+            }
+
+            getDivProduct = () => {
+                
+            }
+        }
+
         const formLogin = document.getElementById('form-login');
         const formCart = document.getElementById('form-cart');
 
         const submitLogin = (event) => {
             event.preventDefault();
+            const inputMail = document.getElementById('email');
+            const inputPassword = document.getElementById('password');
+
+            console.log(inputMail.value, inputPassword.value);
         }
 
         const submitCart = (event) => {
@@ -68,6 +76,62 @@
 
         formLogin.addEventListener('submit', submitLogin);
         formCart.addEventListener('submit', submitCart);
+
+        const products = [];
+
+        const initProducts = (n) => {
+            for(let i = 1; i <= n; i++) {
+                products.push(new Product(i,`Producto ${i}`,Math.floor(Math.random() * 50000) + 1000, Math.floor(Math.random() * 5) + 1));
+            }
+        }
+
+        const divProducts = document.getElementById('products');
+
+        const createDivProduct = (prd) => {
+            const div = document.createElement('div');
+            const h3 = document.createElement('h3');
+            const h1 = document.createElement('h1');
+            const p = document.createElement('p');
+            const button = document.createElement('button');
+            div.className = 'product';
+            h3.innerText = prd.name;
+            h1.innerText = prd.price;
+            p.innerText = `Quedan ${prd.stock} unidades`;
+            button.innerHTML = 'Añadir al carro';
+            button.onclick = function() {
+                products.forEach(p => {
+                    if (p.id === prd.id) {
+                        if (p.stock === 0) {
+                            alert(`${p.name} sin stock`);
+                        } else {
+                            p.stock -= 1;
+                        }
+                    }
+                });
+                drawProducts();
+            }
+            div.appendChild(h3);
+            div.appendChild(h1);
+            div.appendChild(p);
+            div.appendChild(button);
+            return div;
+        }
+
+        const clearDiv = (div) => {
+            while (div.firstChild) {
+                div.removeChild(div.lastChild);
+            }
+        }
+
+        const drawProducts = () => {
+            clearDiv(divProducts);   
+            products.map(prd => {
+                divProducts.appendChild(createDivProduct(prd));
+            });
+        }
+
+        initProducts(5);
+        drawProducts();
 
     </script>
   
